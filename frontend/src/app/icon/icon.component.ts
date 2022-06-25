@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class IconComponent implements OnInit {
 
   @Input() file: string | undefined;
+  @Input() isTraining: boolean | undefined;
   @Output() switchIcon = new EventEmitter<string>();
 
   constructor(
@@ -25,6 +26,8 @@ export class IconComponent implements OnInit {
   inputDisplayed = false;
   form: FormGroup;
   iconDisplayed = false;
+
+  mediaEndpoint = "http://localhost:8080/icons/"
 
 
   @ViewChild('input') input: ElementRef | undefined;
@@ -66,7 +69,9 @@ export class IconComponent implements OnInit {
 
 
   nextIcon() {
-    // this.apiService.postInfo(localStorage.getItem('user'), this.file, this.time, this.form.value.userGuess).subscribe();
+    if(!this.isTraining) {
+      this.apiService.writeCSV(localStorage.getItem("name"), localStorage.getItem("age") ,localStorage.getItem("sex"), this.file, this.time, this.form.controls['userGuess'].value).subscribe();
+    }
     this.iconDisplayed = false;
     this.form.controls['userGuess'].setValue(null);
     this.switchIcon.emit(this.file);

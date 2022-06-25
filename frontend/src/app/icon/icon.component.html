@@ -4,7 +4,7 @@
 </div>
 
 <ng-template #icon>
-    <img src="localhost:8080/">
+    <img src="{{ mediaEndpoint + file}}">
     <p>{{ file }}</p>
     <form [formGroup]="form" (onSubmit)="nextIcon()" *ngIf="inputDisplayed">
         <input #input formControlName="userGuess" type="text" placeholder="utilité de l'icone">

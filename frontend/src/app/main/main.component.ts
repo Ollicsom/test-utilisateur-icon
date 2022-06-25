@@ -58,8 +58,9 @@ export class MainComponent implements OnInit {
   nextIcon(lastIcon: string) {
     if(this.phase === 2) {
       this.filesCopy.splice(this.filesCopy.findIndex(file => file === lastIcon), 1);
+      console.log(this.filesCopy)
       if(this.filesCopy.length === 0) {
-        this.endSession();
+        this.incrementStep();
       }
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
     }
@@ -75,13 +76,6 @@ export class MainComponent implements OnInit {
     if(!localStorage.getItem('name') || !localStorage.getItem('age') || !localStorage.getItem('sex') ) {
         this.phase = -1;
     }
-  }
-
-  async endSession() {
-  //   this.apiService.getCSV()
-  //   localStorage.removeItem('user');
-  //   this.filesCopy = [...this.files];
-  //   this.checkUser();
   }
 
   lauchRebourd() {
@@ -114,6 +108,10 @@ export class MainComponent implements OnInit {
       setTimeout(() => {
         this.lauchRebourd();
       }, 1000)
+    }
+    if(this.step === 3 && this.phase === 2) {
+      this.step = 0;
+      this.phase++;
     }
 
     localStorage.setItem('phase', this.phase.toString());

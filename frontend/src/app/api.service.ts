@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
 
 @Injectable()
 export class ApiService {
@@ -12,7 +11,7 @@ export class ApiService {
     return this.http.get<any>(this.apiEndpoint + '/getIcons');
   }
 
-  public postInfo(userName: string | null, iconPath: string | undefined, time: number, userGuess: string) {
-    return this.http.post<any>(this.apiEndpoint + '/postInfo', {userName, iconPath, time, userGuess});
+  public writeCSV(name: string | null, age: string | null, sex: string | null, iconPath: string | undefined, reactionTime: number, userGuess: string) {
+    return this.http.post<any>(this.apiEndpoint + '/writeCSV', {name, age, sex, iconPath, reactionTime, userGuess});
   }
 }

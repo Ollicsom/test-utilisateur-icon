@@ -75,7 +75,7 @@
             </div>
 
             <div *ngSwitchCase="1" class="container-icon">
-                <app-icon [file]="trainingIcons[iconTrainingIndex]" (switchIcon)="nextIcon($event)"></app-icon>
+                <app-icon [file]="trainingIcons[iconTrainingIndex]" [isTraining]="true" (switchIcon)="nextIcon($event)"></app-icon>
             </div>
 
 
@@ -95,8 +95,15 @@
         </div>
 
         <div *ngSwitchCase="2" [ngSwitch]="step">
-            <div *ngSwitchCase="0" class="container-icon">
-                <app-icon [file]="files[iconIndex]" (switchIcon)="nextIcon($event)"></app-icon>
+
+            <div *ngSwitchCase="0">
+                <p>TEST</p>
+                <p>{{rebourdStrings[rebourdIndex]}}</p>
+            </div>
+
+            <div *ngSwitchCase="1" class="container-icon">
+                <app-icon [file]="filesCopy[iconIndex]" [isTraining]="false" (switchIcon)="nextIcon($event)"></app-icon>
+                <p>{{ files.length - filesCopy.length + 1 }}/{{files.length}}</p>
             </div>
         </div>
     </div>
