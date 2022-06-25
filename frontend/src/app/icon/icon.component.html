@@ -1,0 +1,12 @@
+
+<div *ngIf='!iconDisplayed;else icon' els>
+    <p>ROND ROUGE</p>
+</div>
+
+<ng-template #icon>
+    <img src="localhost:8080/">
+    <p>{{ file }}</p>
+    <form [formGroup]="form" (onSubmit)="nextIcon()" *ngIf="inputDisplayed">
+        <input #input formControlName="userGuess" type="text" placeholder="utilité de l'icone">
+    </form>    
+</ng-template>
