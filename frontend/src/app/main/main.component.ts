@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -11,16 +12,19 @@ export class MainComponent implements OnInit {
 
   files: Array<string> = [];
   filesCopy: Array<string> = [];
+  trainingIcons: Array<string> = [];
   iconIndex: number = 0;
+  iconTrainingIndex: number = 0;
   dataFetched = false;
   step = 0;
   phase = 0;
   spaceEnabled = true;
-  iconTrainingIndex: number = 0;
-  trainingIcons = ['test01.png', 'test02.png', 'test03.png'];
   rebourdStrings = ['3', '2', '1', "C'est parti !"];
   rebourdIndex = 0;
   userForm: FormGroup;
+  progress = 0;
+  environment = environment;
+
 
   constructor(
     private apiService: ApiService,
@@ -45,7 +49,9 @@ export class MainComponent implements OnInit {
       this.files = res.files;
       this.filesCopy = [...res.files];
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
+      this.trainingIcons = res.trainingFiles;
       this.dataFetched = true;
+      this.spaceEnabled = this.checkSpaceEnabled();
     });
 
     
@@ -63,6 +69,8 @@ export class MainComponent implements OnInit {
         this.incrementStep();
       }
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
+      console.log(Math.round(((this.files.length - this.filesCopy.length)/this.files.length)*100))
+      this.progress = Math.round(((this.files.length - this.filesCopy.length)/this.files.length)*100);
     }
     if(this.phase === 1) {
       if(this.iconTrainingIndex >= this.trainingIcons.length - 1) {
@@ -109,13 +117,22 @@ export class MainComponent implements OnInit {
         this.lauchRebourd();
       }, 1000)
     }
-    if(this.step === 3 && this.phase === 2) {
+    if(this.step === 2 && this.phase === 2) {
       this.step = 0;
       this.phase++;
+      this.spaceEnabled = false;
     }
 
     localStorage.setItem('phase', this.phase.toString());
     localStorage.setItem('step', this.step.toString());
+  }
+
+  newUser() {
+    localStorage.removeItem('name');
+    localStorage.removeItem('age');
+    localStorage.removeItem('sex');
+    this.resetStepPhase();
+    this.checkUser();
   }
 
   resetStepPhase() {
@@ -126,6 +143,12 @@ export class MainComponent implements OnInit {
 
     localStorage.setItem('phase', this.phase.toString());
     localStorage.setItem('step', this.step.toString());
+  }
+  checkSpaceEnabled(){
+    if(this.phase != 1){
+      return false;
+    }
+    return true;
   }
 
   saveUserData() {
@@ -147,7 +170,14 @@ export class MainComponent implements OnInit {
         return this.userForm.get('sex')
     }
 
-    log(value: any) {
-        console.log(value)
+    public get exempleIcon() {
+      console.log(this.trainingIcons)
+      return this.trainingIcons[0];
     }
+
+    public get exempleIcon1() {
+      console.log(this.trainingIcons)
+      return this.trainingIcons[1];
+    }
+    
 }

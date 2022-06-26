@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconComponent } from './icon/icon.component';
 import { MainComponent } from './main/main.component';
 import { MatSelectModule } from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
+    MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule

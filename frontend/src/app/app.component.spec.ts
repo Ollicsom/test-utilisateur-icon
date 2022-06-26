@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'tuto-formateur'`, () => {
+  it(`should have as title 'test-icon'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('tuto-formateur');
+    expect(app.title).toEqual('test-icon');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('tuto-formateur app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('test-icon app is running!');
   });
 });

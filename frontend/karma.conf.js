@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/tuto-formateur'),
+      dir: require('path').join(__dirname, './coverage/test-icon'),
       subdir: '.',
       reporters: [
         { type: 'html' },

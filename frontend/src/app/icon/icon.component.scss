@@ -1,0 +1,31 @@
+
+.red-circle{
+    border-radius: 50%;
+    height: 3vw;
+    width: 3vw;
+    background-color: #DC3545;
+    display: flex;
+}
+
+input{
+    width: 20vw;
+    height: 60px;
+    margin: 10px;
+    font-size: 15px;
+}
+.button{
+    color: white;
+    font-size: 25px;
+    background-color: #007BFF;
+    border: 0;
+    border-radius: 3px;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}

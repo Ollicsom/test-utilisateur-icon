@@ -36,7 +36,15 @@ app.get('/getIcons', async (req ,res) => {
         path.resolve(__dirname, 'icons'),
         (err, files) => {
           if (err) throw err;
-          res.status(200).json({"files": files})
+          files = files.filter(file => file.split('.')[1] ? true : false)
+          fs.readdir(
+            path.resolve(__dirname, 'icons/training'),
+            (err, trainingFiles) => {
+              if (err) throw err;
+              
+              res.status(200).json({"files": files, "trainingFiles": trainingFiles})
+            }
+        );
         }
     );
 })

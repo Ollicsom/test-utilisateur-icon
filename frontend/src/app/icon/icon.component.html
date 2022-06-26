@@ -1,12 +1,9 @@
-
-<div *ngIf='!iconDisplayed;else icon' els>
-    <p>ROND ROUGE</p>
-</div>
+<span *ngIf='!iconDisplayed;else icon' class="red-circle"></span>
 
 <ng-template #icon>
-    <img src="{{ mediaEndpoint + file}}">
-    <p>{{ file }}</p>
+    <img src="{{ isTraining ? environment.mediaTrainingEndpoint + file : environment.mediaEndpoint + file}}">
     <form [formGroup]="form" (onSubmit)="nextIcon()" *ngIf="inputDisplayed">
         <input #input formControlName="userGuess" type="text" placeholder="utilité de l'icone">
+        <input (click)="nextIcon()" class="button" type="submit" value="Valider">
     </form>    
 </ng-template>

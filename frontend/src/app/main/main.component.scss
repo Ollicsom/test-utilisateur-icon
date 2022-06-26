@@ -5,3 +5,145 @@
     justify-content: center;
     align-items: center;
 }
+
+p {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+    margin: 0;
+}
+
+div{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.red-text{
+    color: #DC3545;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.large-container{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 30px;
+    width: 60vw;
+    background-color: #C4C4C4;
+}
+
+.thin-container{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 30px;
+    width: 40vw;
+    background-color: #E2E2E2;
+}
+
+.full-container{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 30px;
+    width: 80vw;
+    background-color: #C4C4C4;
+}
+
+.vertical-flex{
+    display: flex;
+    flex-direction: row;
+}
+.vertical-flex>p{
+    width: 33%;
+}
+
+.red-circle{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    background-color: #DC3545;
+}
+
+.clavier{
+    width: 60vw;
+}
+
+#next {
+    position: fixed;
+    bottom: 4vh;
+    right: 4vh;
+}
+
+.button{
+    color: white;
+    font-size: 30px;
+    background-color: #007BFF;
+    border: 0;
+    border-radius: 3px;
+}
+.button>p {
+    padding: 15px;
+    margin: 0;
+}
+
+.back-button{
+    color: white;
+    font-size: 30px;
+    background-color: #3F4449;
+    border: 0;
+    border-radius: 3px;
+}
+.back-button>p {
+    padding: 15px;
+    margin: 0;
+}
+
+.bottom-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 30px;
+    height: 10vh;
+    width: 90vw;
+    
+}
+.countdown{
+    font-size: 90px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.width-60{
+    width: 60%;
+    margin-bottom: 50px;
+}
+
+.progress{
+    position: fixed;
+    bottom: 0;
+    height: 20px;
+}
+
+.progress-number{
+    position: fixed;
+    bottom: 30px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+}
+form>*{
+    margin: 10px;
+}
+
+#thanks{
+    font-size: 70px;
+    margin: 40vh 0 40vh 0;
+}

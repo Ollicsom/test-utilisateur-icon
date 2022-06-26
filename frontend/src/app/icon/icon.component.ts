@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-icon',
@@ -26,8 +27,7 @@ export class IconComponent implements OnInit {
   inputDisplayed = false;
   form: FormGroup;
   iconDisplayed = false;
-
-  mediaEndpoint = "http://localhost:8080/icons/"
+  environment = environment;
 
 
   @ViewChild('input') input: ElementRef | undefined;
