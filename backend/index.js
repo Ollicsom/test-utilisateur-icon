@@ -4,7 +4,7 @@ import express from "express";
 import cors from 'cors'
 import path from 'path';
 import fs from 'fs';
-import { parse } from 'csv-parse';
+// import { parse } from 'csv-parse';
 
 const app = express();
 
@@ -20,25 +20,21 @@ app.use('/icons', express.static(__dirname + '/icons'));
 
 app.post('/writeCSV', async (req ,res) => {
 
-    // const fileContent = await fs.readFile('./data.csv');
-    // const records = parse(fileContent, {columns: true});
-    // console.log(records)
-
-    var parser = parse({columns: true}, function (err, records) {
-        console.log(records);
-    });
-    
-    fs.createReadStream(__dirname + '/data.csv').pipe(parser);
-
-    var dataToWrite = `${req.body.name};${req.body.age};${req.body.sex};${req.body.iconPath};${req.body.reactionTime};${req.body.userGuess}\n`;
-
-    // fs.appendFile('./data.csv', dataToWrite, 'utf8', function (err) {
-    // if (err) {
-    //     res.status(404);
-    // } else{
-    //     res.status(200);
-    // }
+    // var parser = parse({columns: true}, function (err, records) {
+    //     console.log(records);
     // });
+    
+    // fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+
+    var dataToWrite = `${req.body.name},${req.body.age},${req.body.sex},${req.body.iconPath},${req.body.reactionTime},${req.body.userGuess}\n`;
+
+    fs.appendFile('./data.csv', dataToWrite, 'utf8', function (err) {
+    if (err) {
+        res.status(404);
+    } else{
+        res.status(200);
+    }
+    });
 })
 
 app.get('/getIcons', async (req ,res) => {

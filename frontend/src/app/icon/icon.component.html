@@ -3,7 +3,7 @@
 <ng-template #icon>
     <img src="{{ isTraining ? environment.mediaTrainingEndpoint + file : environment.mediaEndpoint + file}}">
     <form [formGroup]="form" (onSubmit)="nextIcon()" *ngIf="inputDisplayed">
-        <input #input formControlName="userGuess" type="text" placeholder="utilité de l'icone">
+        <input #input formControlName="userGuess" type="text" placeholder="Entrer votre réponse">
         <input (click)="nextIcon()" class="button" type="submit" value="Valider">
     </form>    
 </ng-template>

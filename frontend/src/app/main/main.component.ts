@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
       this.trainingIcons = res.trainingFiles;
       this.dataFetched = true;
-      // this.spaceEnabled = this.checkSpaceEnabled();
+      this.spaceEnabled = this.checkSpaceEnabled();
     });
 
     
@@ -138,16 +138,19 @@ export class MainComponent implements OnInit {
     this.spaceEnabled = true;
     this.step = 0;
     this.phase = 0;
+    this.iconIndex = 0;
+    this.iconTrainingIndex = 0;
+    this.filesCopy = [...this.files];
 
     localStorage.setItem('phase', this.phase.toString());
     localStorage.setItem('step', this.step.toString());
   }
-  // checkSpaceEnabled(){
-  //   if(this.phase != 1){
-  //     return false;
-  //   }
-  //   return true;
-  // }
+  checkSpaceEnabled(){
+    if(this.phase != 0 && (this.step != 2 && this.phase != 1) ){
+      return false;
+    }
+    return true;
+  }
 
   saveUserData() {
     localStorage.setItem('name', this.userForm.value.name);
