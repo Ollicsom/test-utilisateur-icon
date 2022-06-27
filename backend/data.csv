@@ -1,7 +1,4 @@
-name;age;sex;icon;reaction-time (centième de secondes);guess;Léo Moscillo;20;H;star.png;204;star
-Léo Moscillo;20;H;running.png;206;running
-Léo Moscillo;20;H;sailboat.png;192;sailing
-Léo Moscillo;20;H;sailboat.png;213;Bateau
-Léo Moscillo;20;H;sailboat.png;221;bateau
-Léo Moscillo;20;H;star.png;188;star
-Léo Moscillo;20;H;running.png;223;running
+Nom,Age,Sexe,IconName,Temps de réaction (centième),réponse, t,ét,et
+Léo Moscillo,101,Assets,Checking account balance,1 ,1
+Wages Payable,220,Liabilities,Amount owed to employes for hours not yet paid,1,1
+Rent expense,560,Expenses,Cost of occupied rented facilities during accounting period,1,1

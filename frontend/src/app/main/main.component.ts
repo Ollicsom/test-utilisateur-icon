@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
       this.trainingIcons = res.trainingFiles;
       this.dataFetched = true;
-      this.spaceEnabled = this.checkSpaceEnabled();
+      // this.spaceEnabled = this.checkSpaceEnabled();
     });
 
     
@@ -64,12 +64,10 @@ export class MainComponent implements OnInit {
   nextIcon(lastIcon: string) {
     if(this.phase === 2) {
       this.filesCopy.splice(this.filesCopy.findIndex(file => file === lastIcon), 1);
-      console.log(this.filesCopy)
       if(this.filesCopy.length === 0) {
         this.incrementStep();
       }
       this.iconIndex = Math.round(Math.random()*(this.filesCopy.length-1));
-      console.log(Math.round(((this.files.length - this.filesCopy.length)/this.files.length)*100))
       this.progress = Math.round(((this.files.length - this.filesCopy.length)/this.files.length)*100);
     }
     if(this.phase === 1) {
@@ -144,12 +142,12 @@ export class MainComponent implements OnInit {
     localStorage.setItem('phase', this.phase.toString());
     localStorage.setItem('step', this.step.toString());
   }
-  checkSpaceEnabled(){
-    if(this.phase != 1){
-      return false;
-    }
-    return true;
-  }
+  // checkSpaceEnabled(){
+  //   if(this.phase != 1){
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   saveUserData() {
     localStorage.setItem('name', this.userForm.value.name);
@@ -171,12 +169,10 @@ export class MainComponent implements OnInit {
     }
 
     public get exempleIcon() {
-      console.log(this.trainingIcons)
       return this.trainingIcons[0];
     }
 
     public get exempleIcon1() {
-      console.log(this.trainingIcons)
       return this.trainingIcons[1];
     }
     
