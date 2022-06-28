@@ -10,6 +10,11 @@ export class ApiService {
     return this.http.get<any>(environment.apiEndpoint + '/getIcons');
   }
 
+  public getId() {
+    console.log('coucou')
+    return this.http.get<any>(environment.apiEndpoint + '/getId');
+  }
+
   public writeCSV(name: string | null, age: string | null, sex: string | null, iconPath: string | undefined, reactionTime: number, userGuess: string) {
     return this.http.post<any>(environment.apiEndpoint + '/writeCSV', {name, age, sex, iconPath, reactionTime, userGuess});
   }

@@ -20,12 +20,6 @@ app.use('/icons', express.static(__dirname + '/icons'));
 
 app.post('/writeCSV', async (req ,res) => {
 
-    // var parser = parse({columns: true}, function (err, records) {
-    //     console.log(records);
-    // });
-    
-    // fs.createReadStream(__dirname + '/data.csv').pipe(parser);
-
     var dataToWrite = `${req.body.name},${req.body.age},${req.body.sex},${req.body.iconPath},${req.body.reactionTime},${req.body.userGuess}\n`;
 
     fs.appendFile('./data.csv', dataToWrite, 'utf8', function (err) {
@@ -36,6 +30,20 @@ app.post('/writeCSV', async (req ,res) => {
     }
     });
 })
+
+
+app.get('/getId'), async (req,res) => {
+    // TO DO : FormControls, + getId
+    
+    var parser = parse({columns: true}, function (err, records) {
+        console.log(records);
+    });
+    
+    fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+
+    res.status(200).json({"id": 2})
+}
+
 
 app.get('/getIcons', async (req ,res) => {
     fs.readdir(

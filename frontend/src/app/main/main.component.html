@@ -4,14 +4,6 @@
         <div *ngSwitchCase="-1">
             <form [formGroup]="userForm" (ngSubmit)="saveUserData()">
                 <div class="form-group">
-                    <label for="name">NOM Prénom :</label>
-                    <input formControlName="name" type="text" class="form-control" id="name" placeholder="NOM Prénom">
-                </div>
-                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="input-feedback">
-                    <small *ngIf="name?.errors?.['required']" class="text-danger input-alert">Veuillez remplir ce champ</small>
-                </div>
-
-                <div class="form-group">
                     <label for="age">Age :</label>
                     <input formControlName="age" type="number" class="form-control" id="age" min="1" max="115">
                 </div>
@@ -98,15 +90,15 @@
 
             <div *ngSwitchCase="2">
                 <p class="full-container">Fin de l’entraînement</p>
-                <p class="width-60">Appuyez sur espace si vous êtes prêt à passer au test.
-                    Cliquez sur le bouton “Retour aux consignes” si vous ne vous sentez pas prêt.
-                </p>
                 <p class="width-60">
                     <b>
                         Rappels:
                         Gardez le doigt au dessus de la touche espace tout au long du test
                         N’appuyez sur espace que quand vous avez décidé quoi répondre
                     </b>
+                </p>
+                <p class="width-60">Appuyez sur espace si vous êtes prêt à passer au test.
+                    Cliquez sur le bouton “Retour aux consignes” si vous ne vous sentez pas prêt.
                 </p>
                 <div class="bottom-container">
                     <button class="back-button" (click)="resetStepPhase()"><p>Retour au consignes</p></button>

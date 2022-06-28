@@ -31,7 +31,6 @@ export class MainComponent implements OnInit {
   ) {
 
     this.userForm = new FormGroup({
-      name: new FormControl(null, [Validators.maxLength(128)]),
       age: new FormControl(null, [Validators.required, Validators.min(0)]),
       sex: new FormControl(null, [Validators.required]),
     })
@@ -79,7 +78,7 @@ export class MainComponent implements OnInit {
   }
 
   checkUser() {
-    if(!localStorage.getItem('name') || !localStorage.getItem('age') || !localStorage.getItem('sex') ) {
+    if(!localStorage.getItem('id') || !localStorage.getItem('age') || !localStorage.getItem('sex') ) {
         this.phase = -1;
     }
   }
@@ -126,7 +125,7 @@ export class MainComponent implements OnInit {
   }
 
   newUser() {
-    localStorage.removeItem('name');
+    localStorage.removeItem('id');
     localStorage.removeItem('age');
     localStorage.removeItem('sex');
     this.resetStepPhase();
@@ -152,16 +151,18 @@ export class MainComponent implements OnInit {
     return true;
   }
 
-  saveUserData() {
-    localStorage.setItem('name', this.userForm.value.name);
+  async saveUserData() {
+    await this.apiService.getId().subscribe((id) => {
+      console.log(id)
+      localStorage.setItem('id', id);
+    })
     localStorage.setItem('age', this.userForm.value.age);
     localStorage.setItem('sex', this.userForm.value.sex);
+    this.userForm.value.sex = null;
+    this.userForm.value.age = null;
     this.phase = parseInt(localStorage.getItem('phase') || '0', 10);
+    this.spaceEnabled = true;
   }
-
-    public get name() {
-        return this.userForm.get('name')
-    }
 
     public get age() {
         return this.userForm.get('age')
