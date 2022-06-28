@@ -80,6 +80,8 @@ export class MainComponent implements OnInit {
   checkUser() {
     if(!localStorage.getItem('id') || !localStorage.getItem('age') || !localStorage.getItem('sex') ) {
         this.phase = -1;
+        this.userForm.controls['age'].setValue(null);
+        this.userForm.controls['sex'].setValue(null);
     }
   }
 
@@ -144,6 +146,7 @@ export class MainComponent implements OnInit {
     localStorage.setItem('phase', this.phase.toString());
     localStorage.setItem('step', this.step.toString());
   }
+  
   checkSpaceEnabled(){
     if(this.phase != 0 && (this.step != 2 && this.phase != 1) ){
       return false;
@@ -152,16 +155,18 @@ export class MainComponent implements OnInit {
   }
 
   async saveUserData() {
-    await this.apiService.getId().subscribe((id) => {
-      console.log(id)
-      localStorage.setItem('id', id);
-    })
-    localStorage.setItem('age', this.userForm.value.age);
-    localStorage.setItem('sex', this.userForm.value.sex);
-    this.userForm.value.sex = null;
-    this.userForm.value.age = null;
-    this.phase = parseInt(localStorage.getItem('phase') || '0', 10);
-    this.spaceEnabled = true;
+    if(this.userForm.value.sex, this.userForm.value.age) {
+
+      await this.apiService.getId().subscribe(id => {
+        localStorage.setItem('id', id);
+      })
+      localStorage.setItem('age', this.userForm.value.age);
+      localStorage.setItem('sex', this.userForm.value.sex);
+      this.userForm.value.sex = null;
+      this.userForm.value.age = null;
+      this.phase = parseInt(localStorage.getItem('phase') || '0', 10);
+      this.spaceEnabled = true;
+    }
   }
 
     public get age() {

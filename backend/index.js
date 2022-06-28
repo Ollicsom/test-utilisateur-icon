@@ -4,7 +4,7 @@ import express from "express";
 import cors from 'cors'
 import path from 'path';
 import fs from 'fs';
-// import { parse } from 'csv-parse';
+import { parse } from 'csv-parse';
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use('/icons', express.static(__dirname + '/icons'));
 
 app.post('/writeCSV', async (req ,res) => {
 
-    var dataToWrite = `${req.body.name},${req.body.age},${req.body.sex},${req.body.iconPath},${req.body.reactionTime},${req.body.userGuess}\n`;
+    var dataToWrite = `${req.body.id},${req.body.age},${req.body.sex},${req.body.iconPath},${req.body.reactionTime},${req.body.userGuess}\n`;
 
     fs.appendFile('./data.csv', dataToWrite, 'utf8', function (err) {
     if (err) {
@@ -31,19 +31,23 @@ app.post('/writeCSV', async (req ,res) => {
     });
 })
 
+app.get('/getId', async (req ,res) => {
+     // TO DO : FormControls, + getId
 
-app.get('/getId'), async (req,res) => {
-    // TO DO : FormControls, + getId
-    
-    var parser = parse({columns: true}, function (err, records) {
-        console.log(records);
-    });
-    
-    fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+     let id;
+    randomNumber();
+    function randomNumber() {
+        id = Math.round(Math.random() * 99999);
+        var parser = parse({columns: true}, function (err, records) {
+            if(records.find(record => record.id = id)) {
+                randomNumber();
+            }
+        });
+        fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+    }
 
-    res.status(200).json({"id": 2})
-}
-
+    res.status(200).json(id)
+})
 
 app.get('/getIcons', async (req ,res) => {
     fs.readdir(

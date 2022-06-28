@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +18,7 @@ export class IconComponent implements OnInit {
     private apiService: ApiService
   ) {
     this.form = new FormGroup({
-      userGuess: new FormControl()
+      userGuess: new FormControl(null, [Validators.required])
     })
   }
 
@@ -70,7 +70,7 @@ export class IconComponent implements OnInit {
 
   nextIcon() {
     if(!this.isTraining) {
-      this.apiService.writeCSV(localStorage.getItem("name"), localStorage.getItem("age") ,localStorage.getItem("sex"), this.file, this.time, this.form.controls['userGuess'].value).subscribe();
+      this.apiService.writeCSV(localStorage.getItem("id"), localStorage.getItem("age") ,localStorage.getItem("sex"), this.file, this.time, this.form.controls['userGuess'].value).subscribe();
     }
     this.iconDisplayed = false;
     this.form.controls['userGuess'].setValue(null);
