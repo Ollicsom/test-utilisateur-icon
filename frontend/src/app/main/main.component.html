@@ -5,7 +5,7 @@
             <form [formGroup]="userForm" (ngSubmit)="saveUserData()">
                 <div class="form-group">
                     <label for="name">NOM Prénom :</label>
-                    <input formControlName="name" type="text" class="form-control" id="name" placeholder="PARKER Peter">
+                    <input formControlName="name" type="text" class="form-control" id="name" placeholder="NOM Prénom">
                 </div>
                 <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="input-feedback">
                     <small *ngIf="name?.errors?.['required']" class="text-danger input-alert">Veuillez remplir ce champ</small>
@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label for="age">Age :</label>
-                    <input formControlName="age" type="number" class="form-control" id="age">
+                    <input formControlName="age" type="number" class="form-control" id="age" min="1" max="115">
                 </div>
                 <div class="form-group">
                     <label for="sex">Sexe :</label>
@@ -52,6 +52,8 @@
                     <p>Lorsque vous appuyez sur  « espace », une zone de texte apparaît. Vous pouvez alors y écrire le nom que vous avez trouvé pour cette icône.
                     Attention, certaines icônes peuvent être abstraites mais vous devez toujours entrer une réponse.  </p>
                 </div>
+                <p class="little-text">Appercu de la zone de texte :</p>
+                <img class="input-img" src="../../assets/input.png">
             </div>
                 
             <div *ngSwitchCase="3">
