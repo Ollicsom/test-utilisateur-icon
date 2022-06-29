@@ -14,10 +14,10 @@ export class MainComponent implements OnInit {
   filesCopy: Array<string> = [];
   trainingIcons: Array<string> = [];
   iconIndex: number = 0;
-  iconTrainingIndex: number = 0;
+  iconTrainingIndex: number = 2;
   dataFetched = false;
-  step = 0;
-  phase = 0;
+  step:number = 0;
+  phase: number = 0;
   spaceEnabled = true;
   rebourdStrings = ['3', '2', '1', "C'est parti !"];
   rebourdIndex = 0;
@@ -140,7 +140,7 @@ export class MainComponent implements OnInit {
     this.step = 0;
     this.phase = 0;
     this.iconIndex = 0;
-    this.iconTrainingIndex = 0;
+    this.iconTrainingIndex = 2;
     this.filesCopy = [...this.files];
 
     localStorage.setItem('phase', this.phase.toString());
@@ -148,7 +148,7 @@ export class MainComponent implements OnInit {
   }
   
   checkSpaceEnabled(){
-    if(this.phase != 0 && (this.step != 2 && this.phase != 1) ){
+    if(this.phase !== 0 || (this.step === 1 && this.phase) ){
       return false;
     }
     return true;
